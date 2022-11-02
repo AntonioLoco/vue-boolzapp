@@ -137,10 +137,17 @@
                         <li 
                         class="message-item" 
                         :class="chat.status"
-                        v-for="chat in contacts[currentChat].messages"
+                        v-for="(chat, index) in contacts[currentChat].messages"
                         >
                             <p>{{ chat.message }}</p>
                             <span id="message-time">{{ chat.date.substring(10,16)}}</span>
+                            <div id="menu-message">
+                                <i class="fa-solid fa-chevron-down"></i>
+                                <ul id="dropdown">
+                                    <li @click="deleteMessage(index)">Delete Message</li>
+                                    <li>Message Info</li>
+                                </ul>
+                            </div>
                         </li>
                         <!-- /Message Item -->
                     </ul>

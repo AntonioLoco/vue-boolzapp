@@ -199,6 +199,12 @@ createApp({
             setTimeout(() => {
                 this.contacts[this.currentChat].messages.push(botMessage);
             }, 1000);
+        },
+        deleteMessage(index){
+            // Elimino l'oggetto messaggio
+            if(this.contacts[this.currentChat].messages.length > 1){
+                this.contacts[this.currentChat].messages.splice(index, 1);
+            }
         }
     }
 }).mount("#app");
