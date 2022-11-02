@@ -19,6 +19,11 @@ ul{
     list-style: none;
 }
 
+input:focus-visible{
+    outline: none;
+}
+
+
 :root{
     /* Palette */
     --ms_bg-app: linear-gradient(180deg, #009688 20%, #D8DBD6 20%);
@@ -188,10 +193,6 @@ ul{
     left: 0;
 }
 
-.search-bar input:focus-visible{
-    outline: none;
-}
-
 /* Main sidebar*/
 .main-sidebar{
     width: 100%;
@@ -341,17 +342,40 @@ ul{
     margin-left: auto;
 }
 
-
-
-
-
-
-
-
-
 /* Footer Chat */
 .chat-wrapper .footer-chat{
     width: 100%;
     height: var(--footer-chat-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em;
     background-color: var(--ms-light-grey);
+}
+
+/* User Input */
+.footer-chat .user-message-input{
+    width: 80%;
+    height: 100%;
+}
+
+.user-message-input label{
+    display: none;
+}
+
+.user-message-input input{
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: .2em;
+}
+
+/* Icons  */
+.footer-chat .icon{
+    width: 10%;
+    font-size: 1.2rem;
+    color: var(--ms-grey);
+    text-align: center;
 }
