@@ -23,5 +23,39 @@ html{
 #app{
     width: 100%;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     background: var(--ms_bg-app);
+}
+
+.container{
+    width: 80%;
+    max-width: 1200px;
+    min-width: 800px;
+    height: 90vh;
+    
+    display: flex;
+
+    /* DEBUG */
+    border: 1px solid black;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width: 30%;
+    height: 100%;
+
+    /* DEBUG */
+    background-color: lightcoral;
+}
+
+/* CHAT */
+.chat-wrapper{
+    width: 70%;
+    height: 100%;
+
+    /* DEBUG */
+    background-color: lightblue;
 }
