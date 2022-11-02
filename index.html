@@ -159,7 +159,13 @@
                     <!-- Input Message -->
                     <div class="user-message-input">
                         <label for="user-message">Scrivi un messaggio</label>
-                        <input type="text" id="user-message" placeholder="Scrivi un messaggio...">
+                        <input 
+                        type="text" 
+                        id="user-message" 
+                        placeholder="Scrivi un messaggio..." 
+                        v-model="userMessage"
+                        @keyup.enter="addUserMessage"
+                        >
                     </div>
                     <!-- /Input Message -->
 

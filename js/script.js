@@ -167,6 +167,24 @@ createApp({
                 }
             ],
             currentChat: 0,
+            userMessage: "",
+        }
+    },
+    methods: {
+        addUserMessage(){
+            const date = new Date();
+            let nowDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+            console.log(nowDate);
+            
+            let newMessage = {
+                date: nowDate,
+                message: this.userMessage,
+                status: 'sent'
+            };
+
+            this.contacts[this.currentChat].messages.push(newMessage);
+            this.userMessage = "";
         }
     }
 }).mount("#app");
