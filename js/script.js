@@ -172,19 +172,32 @@ createApp({
     },
     methods: {
         addUserMessage(){
+            //Prendo il momento in cui invio il messaggio
             const date = new Date();
             let nowDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-            console.log(nowDate);
-            
-            let newMessage = {
+            //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
+            const newMessage = {
                 date: nowDate,
                 message: this.userMessage,
                 status: 'sent'
             };
 
+            // Creo il messaggio del bot
+            const botMessage = {
+                date: nowDate,
+                message: "Ok",
+                status: 'received'
+            };
+
+            //Inserisco il messaggio nell' array di messaggi
             this.contacts[this.currentChat].messages.push(newMessage);
             this.userMessage = "";
+
+            // Aspetto 1 secondo e aggiungo il messaggio del bot nella array di messaggi
+            setTimeout(() => {
+                this.contacts[this.currentChat].messages.push(botMessage);
+            }, 1000);
         }
     }
 }).mount("#app");
