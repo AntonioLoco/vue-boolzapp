@@ -168,6 +168,7 @@ createApp({
             ],
             currentChat: 0,
             userMessage: "",
+            chatFilter: "",
         }
     },
     methods: {

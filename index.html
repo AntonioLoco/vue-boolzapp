@@ -66,7 +66,7 @@
                     <!-- Search Bar -->
                     <div class="search-bar">
                         <label for="search-chat">Cerca o inizia una nuova chat</label>
-                        <input type="text" id="search-chat" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" id="search-chat" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter">
                     </div>
                     <!-- Search Bar -->
 
@@ -83,6 +83,7 @@
                         :class="{'active' : currentChat === index}" 
                         v-for="(contact, index) in contacts"
                         @click="currentChat = index"
+                        v-show=" chatFilter === '' || contact.name.includes(chatFilter) "
                         >
                             <div class="user-photo">
                                 <img :src="`img/avatar${contact.avatar}.jpg`" :alt="`Photo ${contact.name}`">
