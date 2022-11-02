@@ -128,7 +128,24 @@
                 <!-- Header Chat -->
 
                 <!-- Main Chat -->
-                <div class="main-chat"></div>
+                <div class="main-chat">
+
+                    <!-- Message List -->
+                    <ul class="message-list">
+                        <!-- Message Item -->
+                        <li 
+                        class="message-item" 
+                        :class="chat.status"
+                        v-for="chat in contacts[currentChat].messages"
+                        >
+                            <p>{{ chat.message }}</p>
+                            <span id="message-time">{{ chat.date.substring(10,16)}}</span>
+                        </li>
+                        <!-- /Message Item -->
+                    </ul>
+                    <!-- /Message List -->
+
+                </div>
                 <!-- Main Chat -->
 
                 <!-- Footer Chat -->
