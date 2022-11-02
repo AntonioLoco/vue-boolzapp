@@ -174,7 +174,9 @@ createApp({
     methods: {
         addUserMessage(){
             //Prendo il momento in cui invio il messaggio
-            let nowDate = this.getTheTime();
+            var DateTime = luxon.DateTime;
+
+            let nowDate = DateTime.now().toFormat("D TT");
 
             //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
             const newMessage = {
@@ -204,46 +206,6 @@ createApp({
             if(this.contacts[this.currentChat].messages.length > 1){
                 this.contacts[this.currentChat].messages.splice(index, 1);
             }
-        },
-        getTheTime(){
-            const date = new Date();
-            let thisMoment = "";
-
-            if(date.getDate() < 10){
-                thisMoment += `0${date.getDate()}/`;
-            } else{
-                thisMoment += `${date.getDate()}/`;
-            }
-
-            if(date.getMonth() < 10){
-                thisMoment += `0${date.getMonth()}/`;
-            } else{
-                thisMoment += `${date.getMonth()}/`;
-            }
-
-            thisMoment += `${date.getFullYear()} `;
-
-            if(date.getHours() < 10){
-                thisMoment += `0${date.getHours()}:`;
-            } else{
-                thisMoment += `${date.getHours()}:`;
-            }
-
-            if(date.getMinutes() < 10){
-                thisMoment += `0${date.getMinutes()}:`;
-            } else{
-                thisMoment += `${date.getMinutes()}:`;
-            }
-
-            if(date.getSeconds() < 10){
-                thisMoment += `0${date.getSeconds()}`;
-            } else{
-                thisMoment += `${date.getSeconds()}`;
-            }
-
-            console.log(thisMoment);
-            return thisMoment;
-
         }
     }
 }).mount("#app");
