@@ -22,7 +22,6 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-
                 <!-- Header Sidebar -->
                 <div class="header-sidebar">
 
@@ -31,7 +30,7 @@
 
                         <!-- User Description -->
                         <div class="user">
-                            <img src="img/avatar_1.jpg" alt="Photo User">
+                            <img src="img/avatar_io.jpg" alt="Photo User">
                             <h2>Sofia</h2>
                         </div>
                         <!-- /User Description -->
@@ -75,9 +74,30 @@
                 <!-- /Header Sidebar -->
 
                 <!-- Main Sidebar -->
-                <div class="main-sidebar"></div>
+                <div class="main-sidebar">
+                    <!-- Chat list -->
+                    <ul class="chat-list">
+                        <!-- Chat Item -->
+                        <li 
+                        class="chat-item" 
+                        :class="{'active' : currentChat === index}" 
+                        v-for="(contact, index) in contacts"
+                        @click="currentChat = index"
+                        >
+                            <div class="user-photo">
+                                <img :src="`img/avatar${contact.avatar}.jpg`" :alt="`Photo ${contact.name}`">
+                            </div>
+                            <div class="info-chat">
+                                <h3>{{ contact.name }}</h3>
+                                <p>{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p id="last-hour">{{ contact.messages[contact.messages.length - 1].date }}</p>
+                            </div>
+                        </li>
+                        <!-- Chat Item -->
+                    </ul>
+                    <!-- Chat list -->
+                </div>
                 <!-- /Main Sidebar -->
-                
             </div>
             <!-- /Sidebar -->
 
