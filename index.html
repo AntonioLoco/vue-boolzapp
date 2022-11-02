@@ -103,6 +103,37 @@
 
             <!-- Chat Wrapper -->
             <div class="chat-wrapper">
+                <!-- Header Chat -->
+                <div class="header-chat">
+                    <!-- User Information -->
+                    <div class="user-info">
+                        <img 
+                        :src="`img/avatar${contacts[currentChat].avatar}.jpg`" 
+                        :alt="`Photo ${contacts[currentChat].name}`">
+                        <div class="user-description">
+                            <h3>{{ contacts[currentChat].name }}</h3>
+                            <p>Ultimo accesso oggi alle 12:00</p>
+                        </div>
+                    </div>
+                    <!-- /User Information -->
+
+                    <!-- Icons -->
+                    <ul class="icons">
+                        <li><i class="fa-solid fa-magnifying-glass"></i></li>
+                        <li><i class="fa-solid fa-paperclip"></i></li>
+                        <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+                    </ul>
+                    <!-- /Icons -->
+                </div>
+                <!-- Header Chat -->
+
+                <!-- Main Chat -->
+                <div class="main-chat"></div>
+                <!-- Main Chat -->
+
+                <!-- Footer Chat -->
+                <div class="footer-chat"></div>
+                <!-- Footer Chat -->
             </div>
             <!-- /Chat Wrapper -->
 
