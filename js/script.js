@@ -262,6 +262,9 @@ createApp({
             for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
                 this.deleteMessage(i);
             }
+        },
+        deleteChat(){
+            this.contacts.splice(this.currentChat, 1);
         }
     }
 }).mount("#app");
