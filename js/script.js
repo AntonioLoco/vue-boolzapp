@@ -1,4 +1,5 @@
 const {createApp} = Vue;
+const dt = luxon.DateTime;
 
 createApp({
     data(){
@@ -180,9 +181,7 @@ createApp({
     methods: {
         addUserMessage(){
             //Prendo il momento in cui invio il messaggio
-            var DateTime = luxon.DateTime;
-
-            let nowDate = DateTime.now().toFormat("D TT");
+            let nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
 
             //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
             const newMessage = {
