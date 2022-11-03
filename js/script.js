@@ -275,8 +275,12 @@ createApp({
             }
         },
         deleteChat(){
-            console.log(this.currentChat);
-            this.contacts.splice(this.currentChat, 1);
+            if(this.currentChat === this.contacts.length - 1){
+                this.contacts.splice(this.currentChat, 1);
+                this.currentChat = this.contacts.length - 1;
+            } else{
+                this.contacts.splice(this.currentChat, 1);
+            }
         },
         addChat(){
             //Rimuovo l'errore nel caso fosse stato segnalato
