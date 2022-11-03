@@ -95,6 +95,7 @@
                             <div class="info-chat">
                                 <h3>{{ contact.name }}</h3>
                                 <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p v-else>Nessun messaggio recente</p>
                                 <p id="last-hour" v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].date }}</p>
                             </div>
                         </li>
