@@ -69,6 +69,7 @@
 
                     <!-- Search Bar -->
                     <div class="search-bar">
+                        <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                         <label for="search-chat">Cerca o inizia una nuova chat</label>
                         <input type="text" id="search-chat" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter">
                     </div>
@@ -94,7 +95,7 @@
                             </div>
                             <div class="info-chat">
                                 <h3>{{ contact.name }}</h3>
-                                <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p v-if="contact.messages.length > 0" id="last-message">{{ contact.messages[contact.messages.length - 1].message }}</p>
                                 <p v-else>Nessun messaggio recente</p>
                                 <p id="last-hour" v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].date }}</p>
                             </div>

@@ -163,6 +163,11 @@ input:focus-visible{
     padding: .5em;
     background-color: var(--ms-light-grey);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ms-grey);
+    font-size: 1rem;
 }
 
 .search-bar label{
@@ -170,27 +175,25 @@ input:focus-visible{
 }
 
 .search-bar input{
-    width: 100%;
+    width: 80%;
     height: 100%;
-    padding-left: 55px;
+    padding-left: 10px;
     border-style: none;
-    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: #fff;
 }
 
-.header-sidebar .search-bar::before{
-    content: '\f002';
-    display: block;
-    width: 50px;
+.search-bar .search-icon{
+    width: 20%;
     height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     border-right: 1px solid var(--ms-light-grey);
-    position: absolute;
-    z-index: 10;
-    text-align: center;
-    line-height: 35px;
-    font-size: 1rem;
-    top: 0;
-    left: 0;
 }
 
 /* Main sidebar*/
@@ -214,6 +217,10 @@ input:focus-visible{
     padding: .5em .7em;
     border-bottom: 1px solid var(--ms-light-grey);
     cursor: pointer;
+}
+
+.chat-list .chat-item:last-child{
+    border-bottom: none;
 }
 
 .chat-item.active{
@@ -240,6 +247,12 @@ input:focus-visible{
 .info-chat p{
     font-size: .8rem;
     color: var(--ms-grey);
+}
+
+#last-message{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #last-hour{
