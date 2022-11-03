@@ -164,6 +164,12 @@ createApp({
                             status: 'received'
                         }
                     ],
+                },
+                {
+                    name: 'Antonio',
+                    avatar: '_8',
+                    visible: true,
+                    messages: [],
                 }
             ],
             currentChat: 0,
@@ -203,9 +209,7 @@ createApp({
         },
         deleteMessage(index){
             // Elimino l'oggetto messaggio
-            if(this.contacts[this.currentChat].messages.length > 1){
-                this.contacts[this.currentChat].messages.splice(index, 1);
-            }
+            this.contacts[this.currentChat].messages.splice(index, 1);
         }
     }
 }).mount("#app");

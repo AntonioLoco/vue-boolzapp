@@ -94,8 +94,8 @@
                             </div>
                             <div class="info-chat">
                                 <h3>{{ contact.name }}</h3>
-                                <p>{{ contact.messages[contact.messages.length - 1].message }}</p>
-                                <p id="last-hour">{{ contact.messages[contact.messages.length - 1].date }}</p>
+                                <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].message }}</p>
+                                <p id="last-hour" v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].date }}</p>
                             </div>
                         </li>
                         <!-- Chat Item -->
@@ -142,6 +142,7 @@
                         class="message-item" 
                         :class="chat.status"
                         v-for="(chat, index) in contacts[currentChat].messages"
+                        v-if="contacts[currentChat].messages.length > 0"
                         >
                             <p>{{ chat.message }}</p>
                             <span id="message-time">{{ chat.date.substring(10,16)}}</span>
