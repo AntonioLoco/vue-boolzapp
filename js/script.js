@@ -222,6 +222,11 @@ createApp({
             this.contacts[this.currentChat].messages.push(newMessage);
             this.userMessage = "";
 
+            // Scrollo alla fine della chat
+            this.$nextTick(() => {
+                this.scrollToEnd();
+            });
+
             // Aspetto 1 secondo
             setTimeout(() => {
                 // Modifico lo stato del bot in sta scrivendo
@@ -231,6 +236,12 @@ createApp({
                 setTimeout(() => {
                     // Pusho il messaggio del bot
                     this.contacts[this.currentChat].messages.push(botMessage);
+                    
+                    //Scrollo automaticamente alla fine della chat
+                    this.$nextTick(() => {
+                        this.scrollToEnd();
+                    });
+
                     //Modifico lo stato del bot in Online
                     this.contacts[this.currentChat].state = "Online";
 
@@ -288,6 +299,11 @@ createApp({
             // Svuoto i campi del popUp
             this.newContact.name = "";            
             this.newContact.avatar = "";            
+        },
+        scrollToEnd(){
+            const container = document.querySelector('.main-chat');
+            const scrollHeight = container.scrollHeight;
+            container.scrollTop = scrollHeight;
         }
     }
 }).mount("#app");
