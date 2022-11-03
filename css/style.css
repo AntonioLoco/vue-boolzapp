@@ -45,6 +45,43 @@ input:focus-visible{
     --footer-chat-height: 50px;
 }
 
+/* DropDown Menu */
+#dropdown{
+    display: none;
+    width: 120px;
+    color: #000;
+    background-color: #fff;
+    box-shadow: 1px 2px 16px 3px rgba(0,0,0,0.71);
+    font-size: .8rem;
+    padding: .5em 1em;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 999;
+}
+
+#dropdown li{
+    color: #000;
+    position: relative;
+    cursor: pointer;
+    margin: 1em 0;
+}
+
+#dropdown li::before{
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width .5s linear;
+}
+
+#dropdown li:hover::before{
+    width: 100%;
+}
 
 /* LAYOUT */
 #app{
@@ -321,6 +358,22 @@ input:focus-visible{
     margin: .5em;
 }
 
+/* Settings Icon */
+.settings-icon{
+    position: relative;
+    cursor: pointer;
+}
+
+.settings-icon #dropdown{
+    width: 180px;
+    right: -20px;
+    cursor: pointer;
+}
+
+.settings-icon:hover #dropdown{
+    display: block;
+}
+
 /* Main Chat */
 .chat-wrapper .main-chat{
     width: 100%;
@@ -357,25 +410,6 @@ input:focus-visible{
     top: 5px;
     right: 5px;
     cursor: pointer;
-}
-
-#dropdown{
-    display: none;
-    width: 120px;
-    color: #000;
-    background-color: #fff;
-    box-shadow: 1px 2px 16px 3px rgba(0,0,0,0.71);
-    font-size: .8rem;
-    padding: .5em 1em;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 999;
-}
-
-#dropdown li{
-    cursor: pointer;
-    margin: .8em 0;
 }
 
 #menu-message:hover #dropdown{

@@ -128,7 +128,13 @@
                     <ul class="icons">
                         <li><i class="fa-solid fa-magnifying-glass"></i></li>
                         <li><i class="fa-solid fa-paperclip"></i></li>
-                        <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+                        <li class="settings-icon">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <ul id="dropdown">
+                                <li @click="deleteAllMessage()">Delete all message</li>
+                                <li @click="">Delete chat</li>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- /Icons -->
                 </div>

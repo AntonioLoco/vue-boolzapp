@@ -256,6 +256,12 @@ createApp({
             let rndNum =  Math.floor(Math.random() * (max - min + 1) ) + min;
             console.log(rndNum);
             return rndNum;
+        },
+        deleteAllMessage(){
+            console.log("elimino tutti i messaggi");
+            for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
+                this.deleteMessage(i);
+            }
         }
     }
 }).mount("#app");
