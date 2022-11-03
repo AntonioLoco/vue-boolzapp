@@ -8,7 +8,6 @@ createApp({
                 {
                     name: 'Michele',
                     avatar: '_1',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -31,7 +30,6 @@ createApp({
                 {
                     name: 'Fabio',
                     avatar: '_2',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -54,7 +52,6 @@ createApp({
                 {
                     name: 'Samuele',
                     avatar: '_3',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -77,7 +74,6 @@ createApp({
                 {
                     name: 'Alessandro B.',
                     avatar: '_4',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -95,7 +91,6 @@ createApp({
                 {
                     name: 'Alessandro L.',
                     avatar: '_5',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -113,7 +108,6 @@ createApp({
                 {
                     name: 'Claudia',
                     avatar: '_6',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -136,7 +130,6 @@ createApp({
                 {
                     name: 'Federico',
                     avatar: '_7',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -154,7 +147,6 @@ createApp({
                 {
                     name: 'Davide',
                     avatar: '_8',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
@@ -177,7 +169,6 @@ createApp({
                 {
                     name: 'Antonio',
                     avatar: '_8',
-                    visible: true,
                     state: "Ultimo accesso oggi alle 12:00",
                     messages: [],
                 }
@@ -197,6 +188,14 @@ createApp({
             currentChat: 0,
             userMessage: "",
             chatFilter: "",
+            popupOpen: false,
+            popupError: false,
+            newContact: {
+                name: '',
+                avatar: '',
+                state: 'Ultimo accesso alle 12:00',
+                messages: []
+            }
         }
     },
     methods: {
@@ -258,13 +257,37 @@ createApp({
             return rndNum;
         },
         deleteAllMessage(){
-            console.log("elimino tutti i messaggi");
-            for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
-                this.deleteMessage(i);
+            if(this.contacts[this.currentChat].messages.length > 0){
+                for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
+                    this.deleteMessage(i);
+                }
             }
         },
         deleteChat(){
+            console.log(this.currentChat);
             this.contacts.splice(this.currentChat, 1);
+        },
+        addChat(){
+            //Rimuovo l'errore nel caso fosse stato segnalato
+            this.popupError = false;
+
+            // Controlliamo se i campi sono pieni
+            if(this.newContact.name.length > 0 && this.newContact.avatar.length > 0){
+
+                // Pusho il nuovo contatto
+                this.contacts.push({...this.newContact});
+    
+                // Nascondo il popUp
+                this.popupOpen = false;
+    
+            } else {
+                //Segnalo l'errore
+                this.popupError = true;
+            }
+
+            // Svuoto i campi del popUp
+            this.newContact.name = "";            
+            this.newContact.avatar = "";            
         }
     }
 }).mount("#app");

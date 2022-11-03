@@ -91,7 +91,9 @@
                         v-show=" chatFilter === '' || contact.name.includes(chatFilter) "
                         >
                             <div class="user-photo">
-                                <img :src="`img/avatar${contact.avatar}.jpg`" :alt="`Photo ${contact.name}`">
+                                <img 
+                                :src="`img/avatar${contact.avatar}.jpg`" 
+                                :alt="`Photo ${contact.name}`">
                             </div>
                             <div class="info-chat">
                                 <h3>{{ contact.name }}</h3>
@@ -105,6 +107,30 @@
                     <!-- Chat list -->
                 </div>
                 <!-- /Main Sidebar -->
+
+                <!-- Footer Sidebar -->
+                <div class="footer-sidebar">
+                    <!-- Button Add Chat -->
+                    <button id="btn-add-chat" @click="popupOpen = true">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <!-- Button Add Chat -->
+
+                    <!-- Popup Add Chat -->
+                    <div id="popup-add" v-if="popupOpen">
+                        <p v-if="popupError" class="popup-error">Inserisci correttamente i dati</p>
+
+                        <label for="name-chat">Inserisci il nome</label>
+                        <input type="text" id="name-chat" placeholder="Inserisci nome contatto" v-model="newContact.name">
+
+                        <label for="link-icon">Link icona del nuovo contatto</label>
+                        <input type="text" id="link-icon" placeholder="Inserisci link avatar" v-model="newContact.avatar">
+
+                        <button class="btn-add" @click="addChat()">Aggiungi</button>
+                    </div>
+                    <!-- Popup Add Chat -->
+                </div>
+                <!-- Footer Sidebar -->
             </div>
             <!-- /Sidebar -->
 
@@ -115,11 +141,12 @@
                     <!-- User Information -->
                     <div class="user-info">
                         <img 
+                        v-if="contacts.length > 0"
                         :src="`img/avatar${contacts[currentChat].avatar}.jpg`" 
                         :alt="`Photo ${contacts[currentChat].name}`">
                         <div class="user-description">
-                            <h3>{{ contacts[currentChat].name }}</h3>
-                            <p>{{ contacts[currentChat].state}}</p>
+                            <h3 v-if="contacts.length > 0">{{ contacts[currentChat].name }}</h3>
+                            <p v-if="contacts.length > 0">{{ contacts[currentChat].state}}</p>
                         </div>
                     </div>
                     <!-- /User Information -->
@@ -144,7 +171,7 @@
                 <div class="main-chat">
 
                     <!-- Message List -->
-                    <ul class="message-list">
+                    <ul class="message-list" v-if="contacts.length > 0">
                         <!-- Message Item -->
                         <li 
                         class="message-item" 

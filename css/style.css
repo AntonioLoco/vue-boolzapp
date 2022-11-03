@@ -23,10 +23,14 @@ input:focus-visible{
     outline: none;
 }
 
+label{
+    display: none;
+}
 
 :root{
     /* Palette */
     --ms_bg-app: linear-gradient(180deg, #009688 20%, #D8DBD6 20%);
+    --ms_acqua: #009688;
     --ms-light-grey: #eaeaea;
     --ms-grey: #b1b1b1;
     --ms-light-blue: #8edafc;
@@ -107,6 +111,7 @@ input:focus-visible{
 .sidebar{
     width: var(--sidebar-wrapper-width);
     height: 100%;
+    position: relative;
 }
 
 /* Header sidebar*/
@@ -209,10 +214,6 @@ input:focus-visible{
     font-size: 1rem;
 }
 
-.search-bar label{
-    display: none;
-}
-
 .search-bar input{
     width: 80%;
     height: 100%;
@@ -298,6 +299,68 @@ input:focus-visible{
     position: absolute;
     top: 0;
     right: 0;
+}
+
+/* Footer Sidebar */
+
+/* Button add Chat */
+#btn-add-chat{
+    width: 35px;
+    height: 35px;
+    background-color: var(--ms_acqua);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-style: none;
+    cursor: pointer;
+}
+
+/* Popup add */
+#popup-add{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--ms-light-grey);
+    box-shadow: 5px 5px 27px 8px rgba(0,0,0,0.63);
+    border-radius: 10px;
+    z-index: 999;
+}
+
+#popup-add input{
+    width: 80%;
+    height: 25px;
+    background-color: #fff;
+    margin-bottom: 25px;
+    border-style: none;
+    border-radius: 5px;
+    padding: .5em;
+}
+
+#popup-add .btn-add{
+    padding: .5em 1em;
+    color: #fff;
+    background-color: var(--ms_acqua);
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#popup-add .popup-error{
+    font-size: .8rem;
+    margin-bottom: 1em;
+    color: #f00;
 }
 
 /* ------------------------------------------ */
