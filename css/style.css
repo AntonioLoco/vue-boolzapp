@@ -33,6 +33,8 @@ input:focus-visible{
     --ms-light-green: #d5f9ba;
 
     /* Measurable */
+    --width-heigth-user-photo: 35px;
+
     /* Sidebar */
     --sidebar-wrapper-width: 35%;
     --sidebar-header-height: 150px;
@@ -94,8 +96,8 @@ input:focus-visible{
 }
 
 .user-info .user img{
-    width: 35px;
-    height: 35px;
+    width: var(--width-heigth-user-photo);
+    height: var(--width-heigth-user-photo);
     border-radius: 50%;
     object-fit: cover;
     margin-right: .5em;
@@ -227,14 +229,14 @@ input:focus-visible{
     background-color:var(--ms-light-grey);
 }
 
-.chat-list .chat-item img{
-    width: 50px;
-    height: 50px;
+.chat-list .chat-item .user-photo img{
+    width: var(--width-heigth-user-photo);
+    height: var(--width-heigth-user-photo);
     border-radius: 50%;
 }
 
 .chat-item .info-chat{
-    width: calc(100% - 50px);
+    width: calc(100% - var(--width-heigth-user-photo));
     padding-left: .5em;
     position: relative;
 }
@@ -288,8 +290,8 @@ input:focus-visible{
 }
 
 .header-chat .user-info img{
-    width: 35px;
-    height: 35px;
+    width: var(--width-heigth-user-photo);
+    height: var(--width-heigth-user-photo);
     border-radius: 50%;
 }
 
@@ -430,4 +432,5 @@ input:focus-visible{
     font-size: 1.2rem;
     color: var(--ms-grey);
     text-align: center;
+    cursor: pointer;
 }

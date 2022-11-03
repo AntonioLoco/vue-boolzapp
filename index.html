@@ -184,8 +184,17 @@
                     </div>
                     <!-- /Input Message -->
 
+                    <!-- Send Icon -->
+                    <div 
+                    class="icon"
+                    v-if="userMessage.length > 0"
+                    @click="addUserMessage">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <!-- Send Icon -->
+
                     <!-- Microphone Icon -->
-                    <div class="icon">
+                    <div class="icon" v-else>
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                     <!-- Microphone Icon -->
