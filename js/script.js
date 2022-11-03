@@ -173,6 +173,18 @@ createApp({
                     messages: [],
                 }
             ],
+            botMessage: [
+                "Tutto bene tu?",
+                "Se camminassimo solo nelle giornate di sole non raggiungeremmo mai la nostra destinazione.",
+                "Ora non è tempo per pensare a ciò che non hai. Pensa a quello che puoi fare con quello che c'è.",
+                "La fiducia in se stessi è il primo segreto del successo.",
+                "Dai un pesce a una persona e la nutrirai per un giorno; insegna ad una persona come usare internet e non ti scoccerà per settimane.",
+                "Potrebbe andar peggio! Potrebbe... piovere!",
+                "Stupido è chi lo stupido fa",
+                "Vaffanculo! Vaffanculooo! Vi, a, effe, effe, ncuuulooo! Tu, il tuo negozio, la tua villa di merda, mi fai schifo, strooonzo!!! ........... Era occupato.",
+                "L’ottimista afferma che viviamo nel migliore dei mondi possibili, il pessimista teme che sia vero.",
+                "Due cose sono infinite: l’universo e la stupidità umana, ma non sono sicuro dell’universo."
+            ],
             currentChat: 0,
             userMessage: "",
             chatFilter: "",
@@ -191,9 +203,10 @@ createApp({
             };
 
             // Creo il messaggio del bot
+            const randomMessage = this.botMessage[this.getRandomNumber(0,this.botMessage.length - 1)];
             const botMessage = {
                 date: nowDate,
-                message: "Ok",
+                message: randomMessage,
                 status: 'received'
             };
 
@@ -209,6 +222,11 @@ createApp({
         deleteMessage(index){
             // Elimino l'oggetto messaggio
             this.contacts[this.currentChat].messages.splice(index, 1);
+        },
+        getRandomNumber(min,max){
+            let rndNum =  Math.floor(Math.random() * (max - min + 1) ) + min;
+            console.log(rndNum);
+            return rndNum;
         }
     }
 }).mount("#app");
