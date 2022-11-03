@@ -9,6 +9,7 @@ createApp({
                     name: 'Michele',
                     avatar: '_1',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -31,6 +32,7 @@ createApp({
                     name: 'Fabio',
                     avatar: '_2',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -53,6 +55,7 @@ createApp({
                     name: 'Samuele',
                     avatar: '_3',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -75,6 +78,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: '_4',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -92,6 +96,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: '_5',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -109,6 +114,7 @@ createApp({
                     name: 'Claudia',
                     avatar: '_6',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -131,6 +137,7 @@ createApp({
                     name: 'Federico',
                     avatar: '_7',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -148,6 +155,7 @@ createApp({
                     name: 'Davide',
                     avatar: '_8',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -170,6 +178,7 @@ createApp({
                     name: 'Antonio',
                     avatar: '_8',
                     visible: true,
+                    state: "Ultimo accesso oggi alle 12:00",
                     messages: [],
                 }
             ],
@@ -214,9 +223,29 @@ createApp({
             this.contacts[this.currentChat].messages.push(newMessage);
             this.userMessage = "";
 
-            // Aspetto 1 secondo e aggiungo il messaggio del bot nella array di messaggi
+            // Aspetto 1 secondo
             setTimeout(() => {
-                this.contacts[this.currentChat].messages.push(botMessage);
+                // Modifico lo stato del bot in sta scrivendo
+                this.contacts[this.currentChat].state = "Sta scrivendo...";
+
+                // Aspetto 3 secondi
+                setTimeout(() => {
+                    // Pusho il messaggio del bot
+                    this.contacts[this.currentChat].messages.push(botMessage);
+                    //Modifico lo stato del bot in Online
+                    this.contacts[this.currentChat].state = "Online";
+
+                    // Aspetto 3 secondi
+                    setTimeout(() => {
+                        //Prendo l'ultimo orario
+                        nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+
+                        //Imposto l'ultimo accesso all'orario preso con nowDate
+                        this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
+                    }, 3000);
+
+                }, 3000);
+
             }, 1000);
         },
         deleteMessage(index){
