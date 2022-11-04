@@ -186,6 +186,7 @@ createApp({
                 "Due cose sono infinite: l’universo e la stupidità umana, ma non sono sicuro dell’universo."
             ],
             currentChat: 0,
+            activeContactBot: 0,
             userMessage: "",
             chatFilter: "",
             popupOpen: false,
@@ -200,6 +201,8 @@ createApp({
     },
     methods: {
         addUserMessage(){
+            // Prendo la chat corrente
+            this.activeContactBot = this.currentChat;
 
             // Controllo se ci sono chat presenti
             if(this.contacts.length > 0 && this.userMessage.length > 0){    
@@ -211,7 +214,7 @@ createApp({
                 };
     
                 //Inserisco il messaggio nell' array di messaggi
-                this.contacts[this.currentChat].messages.push(newMessage);
+                this.contacts[this.activeContactBot].messages.push(newMessage);
                 this.userMessage = "";
     
                 // Scrollo alla fine della chat
@@ -235,12 +238,12 @@ createApp({
             // Aspetto 1 secondo
             setTimeout(() => {
                 // Modifico lo stato del bot in sta scrivendo
-                this.contacts[this.currentChat].state = "Sta scrivendo...";
+                this.contacts[this.activeContactBot].state = "Sta scrivendo...";
 
                 // Aspetto 3 secondi
                 setTimeout(() => {
                     // Pusho il messaggio del bot
-                    this.contacts[this.currentChat].messages.push(botMessage);
+                    this.contacts[this.activeContactBot].messages.push(botMessage);
                     
                     //Scrollo automaticamente alla fine della chat
                     this.$nextTick(() => {
@@ -248,7 +251,7 @@ createApp({
                     });
 
                     //Modifico lo stato del bot in Online
-                    this.contacts[this.currentChat].state = "Online";
+                    this.contacts[this.activeContactBot].state = "Online";
 
                     // Aspetto 3 secondi
                     setTimeout(() => {
@@ -256,7 +259,7 @@ createApp({
                         nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
 
                         //Imposto l'ultimo accesso all'orario preso con nowDate
-                        this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
+                        this.contacts[this.activeContactBot].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
                     }, 3000);
 
                 }, 3000);
