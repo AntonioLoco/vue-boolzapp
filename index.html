@@ -118,14 +118,21 @@
 
                     <!-- Popup Add Chat -->
                     <div id="popup-add" v-if="popupOpen">
-                        <p v-if="popupError" class="popup-error">Inserisci correttamente i dati</p>
+                        <!-- Button close popUp -->
+                        <button class="btn-close" @click="closePopupAdd()"><i class="fa-solid fa-xmark"></i></button>
 
+                        <!-- Input Nome Chat -->
                         <label for="name-chat">Inserisci il nome</label>
                         <input type="text" id="name-chat" placeholder="Inserisci nome contatto" v-model="newContact.name">
 
+                        <!-- Input Link Avatar chat -->
                         <label for="link-icon">Link icona del nuovo contatto</label>
                         <input type="text" id="link-icon" placeholder="Inserisci link avatar" v-model="newContact.avatar" @keyup.enter="addChat()">
+                        
+                        <!-- Message Error -->
+                        <div class="popup-error"><p v-if="popupError">Inserisci correttamente i dati</p></div>
 
+                        <!-- Button Aggiungi chat -->
                         <button class="btn-add" @click="addChat()">Aggiungi</button>
                     </div>
                     <!-- Popup Add Chat -->

@@ -305,7 +305,6 @@ createApp({
 
                 // Imposto la chat corrente a quella nuova
                 this.currentChat = this.contacts.length - 1;
-    
             } else {
                 //Segnalo l'errore
                 this.popupError = true;
@@ -313,7 +312,17 @@ createApp({
 
             // Svuoto i campi del popUp
             this.newContact.name = "";            
-            this.newContact.avatar = "";            
+            this.newContact.avatar = "";
+            this.newContact.messages = [];
+        },
+        closePopupAdd(){
+            // Nascondo il popUp
+            this.popupOpen = false;
+
+            // Svuoto i campi del popUp
+            this.newContact.name = "";            
+            this.newContact.avatar = "";
+            this.newContact.messages = [];
         },
         scrollToEnd(){
             const container = document.querySelector('.main-chat');

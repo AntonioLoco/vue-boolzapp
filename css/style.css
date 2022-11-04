@@ -336,13 +336,14 @@ label{
     box-shadow: 5px 5px 27px 8px rgba(0,0,0,0.63);
     border-radius: 10px;
     z-index: 999;
+    padding: .5em .8em;
 }
 
 #popup-add input{
-    width: 80%;
+    width: 100%;
     height: 25px;
     background-color: #fff;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     border-style: none;
     border-radius: 5px;
     padding: .5em;
@@ -357,7 +358,17 @@ label{
     cursor: pointer;
 }
 
+#popup-add .btn-close {
+    align-self: flex-end;
+    margin-bottom: 15px;
+    border-style: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
 #popup-add .popup-error{
+    width: 100%;
+    height: 20px;
     font-size: .8rem;
     margin-bottom: 1em;
     color: #f00;
