@@ -202,23 +202,12 @@ createApp({
         addUserMessage(){
 
             // Controllo se ci sono chat presenti
-            if(this.contacts.length > 0 && this.userMessage.length > 0){
-                //Prendo il momento in cui invio il messaggio
-                let nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-    
+            if(this.contacts.length > 0 && this.userMessage.length > 0){    
                 //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
                 const newMessage = {
-                    date: nowDate,
+                    date: this.geneterateDateTime(),
                     message: this.userMessage,
                     status: 'sent'
-                };
-    
-                // Creo il messaggio del bot
-                const randomMessage = this.botMessage[this.getRandomNumber(0,this.botMessage.length - 1)];
-                const botMessage = {
-                    date: nowDate,
-                    message: randomMessage,
-                    status: 'received'
                 };
     
                 //Inserisco il messaggio nell' array di messaggi
@@ -229,38 +218,51 @@ createApp({
                 this.$nextTick(() => {
                     this.scrollToEnd();
                 });
-    
-                // Aspetto 1 secondo
+
+                // Aggiungo la risposta dell bot
+                this.addBotMessage();
+            }
+        },
+        addBotMessage(){
+            // Creo il messaggio del bot
+            const randomMessage = this.botMessage[this.getRandomNumber(0,this.botMessage.length - 1)];
+            const botMessage = {
+                date: this.geneterateDateTime(),
+                message: randomMessage,
+                status: 'received'
+            };
+
+            // Aspetto 1 secondo
+            setTimeout(() => {
+                // Modifico lo stato del bot in sta scrivendo
+                this.contacts[this.currentChat].state = "Sta scrivendo...";
+
+                // Aspetto 3 secondi
                 setTimeout(() => {
-                    // Modifico lo stato del bot in sta scrivendo
-                    this.contacts[this.currentChat].state = "Sta scrivendo...";
-    
+                    // Pusho il messaggio del bot
+                    this.contacts[this.currentChat].messages.push(botMessage);
+                    
+                    //Scrollo automaticamente alla fine della chat
+                    this.$nextTick(() => {
+                        this.scrollToEnd();
+                    });
+
+                    //Modifico lo stato del bot in Online
+                    this.contacts[this.currentChat].state = "Online";
+
                     // Aspetto 3 secondi
                     setTimeout(() => {
-                        // Pusho il messaggio del bot
-                        this.contacts[this.currentChat].messages.push(botMessage);
-                        
-                        //Scrollo automaticamente alla fine della chat
-                        this.$nextTick(() => {
-                            this.scrollToEnd();
-                        });
-    
-                        //Modifico lo stato del bot in Online
-                        this.contacts[this.currentChat].state = "Online";
-    
-                        // Aspetto 3 secondi
-                        setTimeout(() => {
-                            //Prendo l'ultimo orario
-                            nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-    
-                            //Imposto l'ultimo accesso all'orario preso con nowDate
-                            this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
-                        }, 3000);
-    
+                        //Prendo l'ultimo orario
+                        nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+
+                        //Imposto l'ultimo accesso all'orario preso con nowDate
+                        this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
                     }, 3000);
-    
-                }, 1000);
-            }
+
+                }, 3000);
+
+            }, 1000);
+
         },
         deleteMessage(index){
             // Elimino l'oggetto messaggio
@@ -333,6 +335,9 @@ createApp({
             const container = document.querySelector('.main-sidebar');
             const scrollHeight = container.scrollHeight;
             container.scrollTop = scrollHeight;
+        },
+        geneterateDateTime(){
+            return dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
         }
     }
 }).mount("#app");
