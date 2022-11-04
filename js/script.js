@@ -200,63 +200,67 @@ createApp({
     },
     methods: {
         addUserMessage(){
-            //Prendo il momento in cui invio il messaggio
-            let nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
 
-            //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
-            const newMessage = {
-                date: nowDate,
-                message: this.userMessage,
-                status: 'sent'
-            };
-
-            // Creo il messaggio del bot
-            const randomMessage = this.botMessage[this.getRandomNumber(0,this.botMessage.length - 1)];
-            const botMessage = {
-                date: nowDate,
-                message: randomMessage,
-                status: 'received'
-            };
-
-            //Inserisco il messaggio nell' array di messaggi
-            this.contacts[this.currentChat].messages.push(newMessage);
-            this.userMessage = "";
-
-            // Scrollo alla fine della chat
-            this.$nextTick(() => {
-                this.scrollToEnd();
-            });
-
-            // Aspetto 1 secondo
-            setTimeout(() => {
-                // Modifico lo stato del bot in sta scrivendo
-                this.contacts[this.currentChat].state = "Sta scrivendo...";
-
-                // Aspetto 3 secondi
+            // Controllo se ci sono chat presenti
+            if(this.contacts.length > 0){
+                //Prendo il momento in cui invio il messaggio
+                let nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+    
+                //Creo un nuovo oggetto con l'ora e il messaggio dell'utente
+                const newMessage = {
+                    date: nowDate,
+                    message: this.userMessage,
+                    status: 'sent'
+                };
+    
+                // Creo il messaggio del bot
+                const randomMessage = this.botMessage[this.getRandomNumber(0,this.botMessage.length - 1)];
+                const botMessage = {
+                    date: nowDate,
+                    message: randomMessage,
+                    status: 'received'
+                };
+    
+                //Inserisco il messaggio nell' array di messaggi
+                this.contacts[this.currentChat].messages.push(newMessage);
+                this.userMessage = "";
+    
+                // Scrollo alla fine della chat
+                this.$nextTick(() => {
+                    this.scrollToEnd();
+                });
+    
+                // Aspetto 1 secondo
                 setTimeout(() => {
-                    // Pusho il messaggio del bot
-                    this.contacts[this.currentChat].messages.push(botMessage);
-                    
-                    //Scrollo automaticamente alla fine della chat
-                    this.$nextTick(() => {
-                        this.scrollToEnd();
-                    });
-
-                    //Modifico lo stato del bot in Online
-                    this.contacts[this.currentChat].state = "Online";
-
+                    // Modifico lo stato del bot in sta scrivendo
+                    this.contacts[this.currentChat].state = "Sta scrivendo...";
+    
                     // Aspetto 3 secondi
                     setTimeout(() => {
-                        //Prendo l'ultimo orario
-                        nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-
-                        //Imposto l'ultimo accesso all'orario preso con nowDate
-                        this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
+                        // Pusho il messaggio del bot
+                        this.contacts[this.currentChat].messages.push(botMessage);
+                        
+                        //Scrollo automaticamente alla fine della chat
+                        this.$nextTick(() => {
+                            this.scrollToEnd();
+                        });
+    
+                        //Modifico lo stato del bot in Online
+                        this.contacts[this.currentChat].state = "Online";
+    
+                        // Aspetto 3 secondi
+                        setTimeout(() => {
+                            //Prendo l'ultimo orario
+                            nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+    
+                            //Imposto l'ultimo accesso all'orario preso con nowDate
+                            this.contacts[this.currentChat].state = `Ultimo accesso alle ${nowDate.substring(10,16)}`;
+                        }, 3000);
+    
                     }, 3000);
-
-                }, 3000);
-
-            }, 1000);
+    
+                }, 1000);
+            }
         },
         deleteMessage(index){
             // Elimino l'oggetto messaggio
@@ -264,7 +268,6 @@ createApp({
         },
         getRandomNumber(min,max){
             let rndNum =  Math.floor(Math.random() * (max - min + 1) ) + min;
-            console.log(rndNum);
             return rndNum;
         },
         deleteAllMessage(){
@@ -275,7 +278,7 @@ createApp({
             }
         },
         deleteChat(){
-            if(this.currentChat === this.contacts.length - 1){
+            if(this.currentChat === this.contacts.length - 1 && this.currentChat !== 0){
                 this.contacts.splice(this.currentChat, 1);
                 this.currentChat = this.contacts.length - 1;
             } else{
@@ -294,6 +297,14 @@ createApp({
     
                 // Nascondo il popUp
                 this.popupOpen = false;
+
+                // Scrollo alla fine della lista contatti
+                this.$nextTick(() => {
+                    this.scrollToEndSidebar();
+                });
+
+                // Imposto la chat corrente a quella nuova
+                this.currentChat = this.contacts.length - 1;
     
             } else {
                 //Segnalo l'errore
@@ -306,6 +317,11 @@ createApp({
         },
         scrollToEnd(){
             const container = document.querySelector('.main-chat');
+            const scrollHeight = container.scrollHeight;
+            container.scrollTop = scrollHeight;
+        },
+        scrollToEndSidebar(){
+            const container = document.querySelector('.main-sidebar');
             const scrollHeight = container.scrollHeight;
             container.scrollTop = scrollHeight;
         }

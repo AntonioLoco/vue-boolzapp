@@ -124,7 +124,7 @@
                         <input type="text" id="name-chat" placeholder="Inserisci nome contatto" v-model="newContact.name">
 
                         <label for="link-icon">Link icona del nuovo contatto</label>
-                        <input type="text" id="link-icon" placeholder="Inserisci link avatar" v-model="newContact.avatar">
+                        <input type="text" id="link-icon" placeholder="Inserisci link avatar" v-model="newContact.avatar" @keyup.enter="addChat()">
 
                         <button class="btn-add" @click="addChat()">Aggiungi</button>
                     </div>
