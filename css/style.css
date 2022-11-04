@@ -246,7 +246,8 @@ label{
 
 /* Chat List */
 .chat-list{
-    width: 100%;    
+    width: 100%;  
+    height: 100%;  
 }
 
 /* Chat Item */
@@ -300,6 +301,18 @@ label{
     top: 0;
     right: 0;
 }
+
+/* no contact message */
+.chat-list .not-contact-message{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
 
 /* Footer Sidebar */
 

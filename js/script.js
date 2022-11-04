@@ -9,6 +9,7 @@ createApp({
                     name: 'Michele',
                     avatar: '_1',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -31,6 +32,7 @@ createApp({
                     name: 'Fabio',
                     avatar: '_2',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -53,6 +55,7 @@ createApp({
                     name: 'Samuele',
                     avatar: '_3',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -75,6 +78,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: '_4',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -92,6 +96,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: '_5',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -109,6 +114,7 @@ createApp({
                     name: 'Claudia',
                     avatar: '_6',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -131,6 +137,7 @@ createApp({
                     name: 'Federico',
                     avatar: '_7',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -148,6 +155,7 @@ createApp({
                     name: 'Davide',
                     avatar: '_8',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -170,6 +178,7 @@ createApp({
                     name: 'Antonio',
                     avatar: '_8',
                     state: "Ultimo accesso oggi alle 12:00",
+                    visible: true,
                     messages: [],
                 }
             ],
@@ -188,13 +197,15 @@ createApp({
             currentChat: 0,
             activeContactBot: 0,
             userMessage: "",
-            chatFilter: "",
+            chatStringFilter: "",
+            noContactsFound: false,
             popupOpen: false,
             popupError: false,
             newContact: {
                 name: '',
                 avatar: '',
                 state: 'Ultimo accesso alle 12:00',
+                visible: true,
                 messages: []
             }
         }
@@ -341,6 +352,38 @@ createApp({
         },
         geneterateDateTime(){
             return dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+        },
+        chatFilter(){
+            // Imposto il messaggio di nessun contatto a false
+            this.noContactsFound = false;
+            // Creo una variabile count che mi terrà il conto dei contatti non trovati
+            let count = 0;
+
+            // Prendo il filtro dell'utente
+            const userSearch = this.chatStringFilter.toLowerCase();
+
+            // Controlliamo tutto l'array di contatti
+            for (let i = 0; i < this.contacts.length; i++) {
+                // Prendiamo il nome corrente del contatto
+                const thisContact = this.contacts[i].name.toLowerCase();
+                
+                // Se la sottostringa del nome della stessa lunghezza del filtro non è uguale al filtro
+                if (thisContact.substring(0,userSearch.length) !== userSearch) {
+                    // Nascondo il contatto
+                    this.contacts[i].visible = false;
+                    // Incremento il conteggio del contatto non trovato
+                    count++;
+                } else{
+                    // Mostro il contatto
+                    this.contacts[i].visible = true;
+                }
+
+                // Controlliamo se il conteggio dei contatti non trovati è uguale ai contatti della lista
+                if(count === this.contacts.length){
+                    // Mostro il messaggio di nessun contatto
+                    this.noContactsFound = true;
+                }
+            }
         }
     }
 }).mount("#app");

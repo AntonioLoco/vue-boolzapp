@@ -71,7 +71,7 @@
                     <div class="search-bar">
                         <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                         <label for="search-chat">Cerca o inizia una nuova chat</label>
-                        <input type="text" id="search-chat" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter">
+                        <input type="text" id="search-chat" placeholder="Cerca o inizia una nuova chat" @keyup="chatFilter()" v-model.trim="chatStringFilter">
                     </div>
                     <!-- Search Bar -->
 
@@ -88,7 +88,7 @@
                         :class="{'active' : currentChat === index}" 
                         v-for="(contact, index) in contacts"
                         @click="currentChat = index"
-                        v-show=" chatFilter === '' || contact.name.includes(chatFilter) "
+                        v-show="contact.visible"
                         >
                             <div class="user-photo">
                                 <img 
@@ -103,6 +103,13 @@
                             </div>
                         </li>
                         <!-- Chat Item -->
+
+                        <!-- Message No contact found -->
+                        <li v-if="noContactsFound" class="not-contact-message">
+                            <p>Nessun contatto presente</p>
+                        </li>
+                        <!-- /Message No contact found -->
+
                     </ul>
                     <!-- Chat list -->
                 </div>
