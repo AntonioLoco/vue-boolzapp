@@ -260,7 +260,7 @@ label{
     cursor: pointer;
     text-decoration: underline;
     font-size: .7rem;
-    color: var(--ms-light-grey);
+    color: var(--ms_bg-light-grey);
 }
 
 /* Search bar */
@@ -540,9 +540,17 @@ label{
     padding: 1em 1em;
 }
 
+/* Message List */
+.message-list{
+    display: flex;
+    flex-direction: column;
+}
+
 /* Message Item */
 .message-list .message-item{
-    width: 50%;
+    max-width: 50%;
+    min-width: 100px;
+    display: table-cell;
     border-radius: 10px;
     padding: .8em .8em;
     position: relative;
