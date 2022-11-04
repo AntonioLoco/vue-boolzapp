@@ -461,7 +461,7 @@ label{
 .chat-wrapper{
     width: var(--chat-wrapper-width);
     height: 100%;
-    border-left: 1px solid var(--ms-grey);
+    border-left: 1px solid var(--ms_bg-light-grey);
 }
 
 /* Header Chat */

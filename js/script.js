@@ -392,7 +392,7 @@ createApp({
             this.root = document.documentElement;
             if(!this.darkTheme){
                 // Tema bianco
-                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 20%, #D8DBD6 20%)");
+                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 18.8%, #D8DBD6 18.8%)");
                 this.root.style.setProperty("--background-chat", "url(../img/mine.jpg)");
                 this.root.style.setProperty("--ms-black", "#000");
                 this.root.style.setProperty("--ms-white", "#fff");
@@ -400,7 +400,7 @@ createApp({
                 this.root.style.setProperty("--ms_bg-light-grey", "#eaeaea");
             } else{
                 // Tema Dark
-                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 20%, #252525 20%)");
+                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 18.8%, #000000e8 18.8%)");
                 this.root.style.setProperty("--background-chat", "url(../img/mine-dark.png)");
                 this.root.style.setProperty("--ms-black", "#fff");
                 this.root.style.setProperty("--ms-white", "#000");
