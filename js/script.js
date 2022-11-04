@@ -202,7 +202,7 @@ createApp({
         addUserMessage(){
 
             // Controllo se ci sono chat presenti
-            if(this.contacts.length > 0){
+            if(this.contacts.length > 0 && this.userMessage.length > 0){
                 //Prendo il momento in cui invio il messaggio
                 let nowDate = dt.now().setLocale("it").toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
     
