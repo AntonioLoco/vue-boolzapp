@@ -41,7 +41,16 @@
 
                         <!-- Icons -->
                         <ul class="icons">
-                            <li><i class="fa-solid fa-circle-notch"></i></li>
+                            <li @click="changeTheme()">
+                                <div id="icon-switch-theme" :class="{'dark' : darkTheme}">
+                                    <div class="theme-light">
+                                        <i class="fa-solid fa-sun"></i>
+                                    </div>
+                                    <div class="theme-dark">
+                                        <i class="fa-solid fa-moon"></i>
+                                    </div>
+                                </div>
+                            </li>
                             <li><i class="fa-solid fa-message"></i></li>
                             <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
                         </ul>

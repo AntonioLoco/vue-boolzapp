@@ -207,7 +207,9 @@ createApp({
                 state: 'Ultimo accesso alle 12:00',
                 visible: true,
                 messages: []
-            }
+            },
+            darkTheme: true,
+            root: null,
         }
     },
     methods: {
@@ -384,6 +386,30 @@ createApp({
                     this.noContactsFound = true;
                 }
             }
+        },
+        changeTheme(){
+            this.darkTheme = !this.darkTheme;
+            this.root = document.documentElement;
+            if(!this.darkTheme){
+                // Tema bianco
+                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 20%, #D8DBD6 20%)");
+                this.root.style.setProperty("--background-chat", "url(../img/mine.jpg)");
+                this.root.style.setProperty("--ms-black", "#000");
+                this.root.style.setProperty("--ms-white", "#fff");
+                this.root.style.setProperty("--ms_bg-white", "#fff");
+                this.root.style.setProperty("--ms_bg-light-grey", "#eaeaea");
+            } else{
+                // Tema Dark
+                this.root.style.setProperty("--ms_bg-app", "linear-gradient(180deg, #009688 20%, #252525 20%)");
+                this.root.style.setProperty("--background-chat", "url(../img/mine-dark.png)");
+                this.root.style.setProperty("--ms-black", "#fff");
+                this.root.style.setProperty("--ms-white", "#000");
+                this.root.style.setProperty("--ms_bg-white", "#000");
+                this.root.style.setProperty("--ms_bg-light-grey", "#252525");
+            }
         }
+    },
+    mounted(){
+        this.changeTheme();
     }
 }).mount("#app");
