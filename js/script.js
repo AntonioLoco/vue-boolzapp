@@ -289,9 +289,11 @@ createApp({
             return rndNum;
         },
         deleteAllMessage(){
-            if(this.contacts[this.currentChat].messages.length > 0){
-                for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
-                    this.deleteMessage(i);
+            if(this.contacts.length > 0){
+                if(this.contacts[this.currentChat].messages.length > 0){
+                    for(let i = this.contacts[this.currentChat].messages.length; i >= 0; i--){
+                        this.deleteMessage(i);
+                    }
                 }
             }
         },
